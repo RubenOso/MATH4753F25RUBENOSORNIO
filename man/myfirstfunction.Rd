@@ -2,7 +2,7 @@
 % Please edit documentation in R/MyFIrst.R
 \name{myfirstfunction}
 \alias{myfirstfunction}
-\title{My FIrst Function}
+\title{My First Function}
 \usage{
 myfirstfunction(x)
 }
@@ -13,8 +13,8 @@ myfirstfunction(x)
 A list with component x and y where y is the square of 'x'.
 }
 \description{
-My FIrst Function
+My First Function
 }
 \examples{
-MyFirstFunction(1:10)
+myfirstfunction(1:10)
 }
