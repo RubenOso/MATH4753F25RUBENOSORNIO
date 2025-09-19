@@ -16,3 +16,6 @@ LazyData: true
 URL: https://github.com/RubenOso/MATH4753F25RUBENOSORNIO
 BugReports: https://github.com/RubenOso/MATH4753F25RUBENOSORNIO/issues
 RoxygenNote: 7.3.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
