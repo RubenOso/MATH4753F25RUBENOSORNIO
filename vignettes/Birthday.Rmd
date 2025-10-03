@@ -1,0 +1,96 @@
+---
+title: "Birthday"
+output:
+  rmarkdown::html_document:
+    toc: true
+    toc_float: true
+
+vignette: >
+  %\VignetteIndexEntry{Birthday}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+library(MATH4753F25RUBENOSORNIO)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## 1. Mathematical derivation
+
+We want the probability that in a group of size $n$, at least two people share a birthday.
+
+The probability that all birthdays are distinct is:
+
+\[
+P(\text{all distinct}) \;=\; \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{365-n+1}{365}.
+\]
+
+This can be written as:
+
+\[
+P(\text{all distinct}) \;=\; \frac{365^{\underline{n}}}{365^n},
+\]
+
+where the falling factorial is:
+
+\[
+365^{\underline{n}} = 365 \cdot (365-1) \cdot (365-2) \cdots (365-n+1).
+\]
+
+Therefore:
+
+\[
+P(\text{match}) \;=\; 1 - P(\text{all distinct}).
+\]
+
+
+
+## 2. Using Ifactorial and Ichoose
+
+Using factorials, we can rewrite the falling factorial as:
+\[
+365^{\underline{n}} = \frac{365!}{(365-n)!}.
+\]
+So the probability that all birthdays are distinct is:
+\[
+P(\text{all distinct}) = \frac{365!}{(365-n)! \cdot 365^n}.
+\]
+Taking logs gives a numerically stable expression:
+\[
+\log P(\text{all distinct}) = \texttt{lfactorial(365)} - \texttt{lfactorial(365-n)} - n \log(365).
+\]
+Alternatively, since
+\[
+\binom{365}{n} \cdot n! = \frac{365!}{(365-n)!},
+\]
+we can also write:
+\[
+\log P(\text{all distinct}) = \texttt{lchoose(365, n)} + \texttt{lfactorial(n)} - n \log(365).
+\]
+Finally, the probability of at least one shared birthday is:
+\[
+P(\text{match}) = 1 - \exp\!\big(\log P(\text{all distinct})\big).
+\]
+
+
+
+
+
+## 3. Function in the package 
+
+```{r}
+Birthday
+```
+
+
+## 4. Example
+```{r}
+
+
+Birthday(x = 20:25)
+```
