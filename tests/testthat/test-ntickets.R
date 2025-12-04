@@ -1,0 +1,10 @@
+test_that("ntickets works correctly for given example", {
+  res <- ntickets(N = 400, gamma = 0.02, p = 0.95, show_plots = FALSE)
+  expect_true(is.list(res))
+  expect_true(all(c("nd", "nc", "N", "p", "gamma") %in% names(res)))
+  expect_equal(res$N, 400)
+  expect_equal(res$p, 0.95)
+  expect_equal(res$gamma, 0.02)
+  expect_true(res$nd > res$N)
+  expect_true(res$nc > res$N)
+})

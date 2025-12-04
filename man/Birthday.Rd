@@ -2,20 +2,21 @@
 % Please edit documentation in R/birthday.R
 \name{Birthday}
 \alias{Birthday}
-\title{Title birthday function}
+\title{Probability of at least one shared birthday among x people}
 \usage{
 Birthday(x)
 }
 \arguments{
-\item{x}{x as a vector}
+\item{x}{Integer vector of group sizes (x >= 0).}
 }
 \value{
-returns
+Numeric vector of probabilities between 0 and 1, same length as \code{x}.
 }
 \description{
-Title birthday function
+Computes 1 - P(no match) using a numerically stable log form:
+P(no match) = choose(365, x) * x! / 365^x.
 }
 \examples{
-Birthday(20:24)
-
+Birthday(23)        # ~0.5073
+Birthday(20:25)     # vectorized
 }
